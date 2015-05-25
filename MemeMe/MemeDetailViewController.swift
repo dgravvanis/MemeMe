@@ -23,29 +23,29 @@ class MemeDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         
         // Hide tab bar
-        self.tabBarController?.tabBar.hidden = true
+        tabBarController?.tabBar.hidden = true
         
         // Get image and display it in image view
-        self.imageView!.image = ((UIApplication.sharedApplication().delegate as! AppDelegate).memes[indexPath.row]).memedImage
+        imageView.image = ((UIApplication.sharedApplication().delegate as! AppDelegate).memes[indexPath.row]).memedImage
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        self.tabBarController?.tabBar.hidden = false
+        tabBarController?.tabBar.hidden = false
     }
 
     // Launch meme editor to edit meme
     @IBAction func editMeme(sender: UIBarButtonItem) {
         
         // Grab the editorVC from Storyboard
-        var editorVC = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorVC") as! MemeEditorViewController
+        var editorVC = storyboard!.instantiateViewControllerWithIdentifier("MemeEditorVC") as! MemeEditorViewController
         
         // Pass the idexpath
         editorVC.indexPath = indexPath
         
         // Present the view controller using navigation
-        self.navigationController!.pushViewController(editorVC, animated: true)
+        navigationController!.pushViewController(editorVC, animated: true)
         
     }
     
@@ -75,6 +75,6 @@ class MemeDetailViewController: UIViewController {
         }))
 
         // Present the alert
-        self.presentViewController(alert, animated: true, completion: nil)
+        presentViewController(alert, animated: true, completion: nil)
     }
 }

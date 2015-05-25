@@ -27,7 +27,7 @@ class MemeTableViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
 
     // MARK: Table view delegate methods
@@ -49,15 +49,15 @@ class MemeTableViewController: UITableViewController {
             placeholder.textAlignment = NSTextAlignment.Center
             placeholder.font = UIFont(name: "Impact", size: 20)!
             placeholder.sizeToFit()
-            self.tableView.backgroundView = placeholder
-            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+            tableView.backgroundView = placeholder
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.None
             return 0
         }else{
             // Enable edit button
             editButton.enabled = true
             // Remove placeholder message
-            self.tableView.backgroundView = nil
-            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+            tableView.backgroundView = nil
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
             return 1
         }
     }
@@ -95,13 +95,13 @@ class MemeTableViewController: UITableViewController {
         let meme = (UIApplication.sharedApplication().delegate as! AppDelegate).memes[indexPath.row]
         
         // Grab the MemeDeatailViewController from Storyboard
-        var detailVC = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailVC") as! MemeDetailViewController
+        var detailVC = storyboard!.instantiateViewControllerWithIdentifier("MemeDetailVC") as! MemeDetailViewController
     
         //Populate view controller with data from the selected item
         detailVC.indexPath = indexPath
         
         //Present the view controller using navigation
-        self.navigationController!.pushViewController(detailVC, animated: true)
+        navigationController!.pushViewController(detailVC, animated: true)
     }
     
     
@@ -126,14 +126,14 @@ class MemeTableViewController: UITableViewController {
             }))
             
             // Present the alert
-            self.presentViewController(alert, animated: true, completion: nil)
+            presentViewController(alert, animated: true, completion: nil)
            
         }else{
             
             editButton.image = UIImage(named: "DeleteToolbarIcon")
             hidden = true
             // Reload cells
-            self.tableView.reloadData()
+            tableView.reloadData()
         }
 
     }
@@ -147,7 +147,7 @@ class MemeTableViewController: UITableViewController {
         (UIApplication.sharedApplication().delegate as! AppDelegate).memes.removeAtIndex(i)
         
         // Reload cells
-        self.tableView.reloadData()
+        tableView.reloadData()
         
         // Disable edit button when memes array is empty
         if (UIApplication.sharedApplication().delegate as! AppDelegate).memes.isEmpty {
@@ -160,7 +160,7 @@ class MemeTableViewController: UITableViewController {
     @IBAction func createMeme(sender: UIBarButtonItem) {
         
         // Present meme editor
-        var editorVC = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorVC") as! MemeEditorViewController
-        self.navigationController!.pushViewController(editorVC, animated: true)
+        var editorVC = storyboard!.instantiateViewControllerWithIdentifier("MemeEditorVC") as! MemeEditorViewController
+        navigationController!.pushViewController(editorVC, animated: true)
     }
 }

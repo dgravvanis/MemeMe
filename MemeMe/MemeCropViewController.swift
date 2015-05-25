@@ -56,7 +56,7 @@ class MemeCropViewController: UIViewController, UIScrollViewDelegate, UINavigati
         super.viewWillAppear(animated)
 
         // Hide tab bar controller
-        self.tabBarController?.tabBar.hidden = true
+        tabBarController?.tabBar.hidden = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -66,7 +66,7 @@ class MemeCropViewController: UIViewController, UIScrollViewDelegate, UINavigati
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        self.tabBarController?.tabBar.hidden = false
+        tabBarController?.tabBar.hidden = false
     }
 
     // Center the imageView if it smaller than the scroll view
@@ -123,6 +123,6 @@ class MemeCropViewController: UIViewController, UIScrollViewDelegate, UINavigati
         delegate!.cropDidFinish(self, image: image)
         
         // Pop the crop view controller
-        self.navigationController!.popViewControllerAnimated(true)
+        navigationController!.popViewControllerAnimated(true)
     }
 }

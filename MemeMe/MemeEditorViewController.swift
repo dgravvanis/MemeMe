@@ -59,10 +59,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewWillDisappear(animated)
         
         // Hide tab bar
-        self.tabBarController?.tabBar.hidden = true
+        tabBarController?.tabBar.hidden = true
         
         // Subscribe to keyboard notifications
-        self.subscribeToKeyboardNotifications()
+        subscribeToKeyboardNotifications()
         
         // Disable camera button if no camera is available
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
@@ -87,9 +87,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewWillDisappear(animated)
         
         // Show nav bar
-        self.tabBarController?.tabBar.hidden = false
+        tabBarController?.tabBar.hidden = false
         // Unsubcribe from keyboard notifications
-        self.unsubscribeFromKeyboardNotifications()
+        unsubscribeFromKeyboardNotifications()
     }
     
     // MARK: Keyboard notifications
@@ -110,14 +110,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func keyboardWillShow(notification: NSNotification) {
         
         if bottomText.isFirstResponder() {
-        self.view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y -= getKeyboardHeight(notification)
         }
     }
     
     // Push the view down when the keyboard hides
     func keyboardWillHide() {
         
-        self.view.frame.origin.y = 0
+        view.frame.origin.y = 0
     }
     
     // Get the keyboard height
@@ -133,15 +133,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            self.imageView.image = image
-            self.dismissViewControllerAnimated(true, completion: nil)
+            imageView.image = image
+            dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
     // If user cancels, dismiss controller
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     // Select image from photo library
@@ -150,7 +150,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        self.presentViewController(pickerController, animated: true, completion: nil)
+        presentViewController(pickerController, animated: true, completion: nil)
     }
 
     // Select image from camera
@@ -159,7 +159,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
-        self.presentViewController(imagePickerController, animated: true, completion: nil)
+        presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
     // MARK: Textfield delegate methods
@@ -188,7 +188,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         // Get image view origin, navigation bar height, status bar height
         let origin = imageView.bounds.origin
-        let navBarHeight = self.navigationController!.navigationBar.bounds.size.height
+        let navBarHeight = navigationController!.navigationBar.bounds.size.height
         let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
         CGContextTranslateCTM(UIGraphicsGetCurrentContext(), -origin.x, -origin.y - navBarHeight - statusBarHeight)
         
@@ -229,7 +229,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let activityViewController = UIActivityViewController(activityItems: [meme as UIImage],applicationActivities: nil)
         
         // Present the controller
-        self.presentViewController(activityViewController, animated: true, completion: nil)
+        presentViewController(activityViewController, animated: true, completion: nil)
         
         // Completion handler
         activityViewController.completionWithItemsHandler = {(activityType:String!, completed: Bool, returnedItems: [AnyObject]!, error: NSError!) in
@@ -249,14 +249,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBAction func cropImage(sender: UIBarButtonItem) {
         
         // Grab the cropVC from Storyboard
-        var cropVC = self.storyboard!.instantiateViewControllerWithIdentifier("MemeCropVC") as! MemeCropViewController
+        var cropVC = storyboard!.instantiateViewControllerWithIdentifier("MemeCropVC") as! MemeCropViewController
         
         // Pass the image
         cropVC.image = imageView.image
         // Delegate
         cropVC.delegate = self
         // Present the view controller using navigation
-        self.navigationController!.pushViewController(cropVC, animated: true)
+        navigationController!.pushViewController(cropVC, animated: true)
     }
     
     // Delegate to get the image back from crop

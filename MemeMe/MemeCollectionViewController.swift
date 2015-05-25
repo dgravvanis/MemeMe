@@ -24,7 +24,7 @@ class MemeCollectionViewController : UICollectionViewController {
     
     override func viewWillAppear(animated: Bool) {
         
-        self.collectionView!.reloadData()
+        collectionView!.reloadData()
     }
     
     // MARK: Collection view delegate methods
@@ -46,13 +46,13 @@ class MemeCollectionViewController : UICollectionViewController {
             placeholder.textAlignment = NSTextAlignment.Center
             placeholder.font = UIFont(name: "Impact", size: 20)!
             placeholder.sizeToFit()
-            self.collectionView!.backgroundView = placeholder
+            collectionView.backgroundView = placeholder
             return 0
         }else{
             // Enable edit button
             editButton.enabled = true
             // Remove placeholder message
-            self.collectionView!.backgroundView = nil
+            collectionView.backgroundView = nil
             return 1
         }
 
@@ -90,13 +90,13 @@ class MemeCollectionViewController : UICollectionViewController {
         let meme = (UIApplication.sharedApplication().delegate as! AppDelegate).memes[indexPath.row]
         
         // Grab the DetailVC from Storyboard
-        var detailVC = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailVC") as! MemeDetailViewController
+        var detailVC = storyboard!.instantiateViewControllerWithIdentifier("MemeDetailVC") as! MemeDetailViewController
         
         // Populate view controller with data from the selected item
         detailVC.indexPath = indexPath
         
         // Present the view controller using navigation
-        self.navigationController!.pushViewController(detailVC, animated: true)
+        navigationController!.pushViewController(detailVC, animated: true)
     }
 
     // MARK: Edit collection
@@ -121,14 +121,14 @@ class MemeCollectionViewController : UICollectionViewController {
             }))
             
             // Present the alert
-            self.presentViewController(alert, animated: true, completion: nil)
+            presentViewController(alert, animated: true, completion: nil)
             
         }else{
             
             editButton.image = UIImage(named: "DeleteToolbarIcon")
             hidden = true
             // Reload cells
-            self.collectionView!.reloadData()
+            collectionView!.reloadData()
         }
     }
     
@@ -142,7 +142,7 @@ class MemeCollectionViewController : UICollectionViewController {
         (UIApplication.sharedApplication().delegate as! AppDelegate).memes.removeAtIndex(i)
         
         // Reload cells
-        self.collectionView!.reloadData()
+        collectionView!.reloadData()
         
         // Disable edit button when memes array is empty
         if (UIApplication.sharedApplication().delegate as! AppDelegate).memes.isEmpty {
@@ -155,7 +155,7 @@ class MemeCollectionViewController : UICollectionViewController {
     @IBAction func createMeme(sender: UIBarButtonItem) {
         
         // Present meme editor
-        var editorVC = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorVC") as! MemeEditorViewController
-        self.navigationController!.pushViewController(editorVC, animated: true)
+        var editorVC = storyboard!.instantiateViewControllerWithIdentifier("MemeEditorVC") as! MemeEditorViewController
+        navigationController!.pushViewController(editorVC, animated: true)
     }
 }

@@ -29,6 +29,6 @@ class MemeCollectionViewCell: UICollectionViewCell {
         
         var imageView = UIImageView(image: image)
         imageView.contentMode = .ScaleAspectFit
-        self.backgroundView = imageView
+        backgroundView = imageView
     }
 }
