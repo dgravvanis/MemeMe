@@ -107,21 +107,8 @@ class MemeCollectionViewController : UICollectionViewController {
             
             editButton.image = UIImage(named: "DeleteFilledToolbarIcon")
             hidden = false
-            
-            let alert = UIAlertController(title: "Delete Memes", message: "You can delete multiple Memes by pressing the trash icon", preferredStyle: UIAlertControllerStyle.Alert)
-            
-            // Add delete action
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { alertAction in
-                
-                // Dismiss alert
-                alert.dismissViewControllerAnimated(true, completion: nil)
-                
-                // Reload cells
-                self.collectionView!.reloadData()
-            }))
-            
-            // Present the alert
-            presentViewController(alert, animated: true, completion: nil)
+            // Reload cells
+            collectionView!.reloadData()
             
         }else{
             
@@ -133,7 +120,7 @@ class MemeCollectionViewController : UICollectionViewController {
     }
     
     // Delete the cell
-    @IBAction func deleteCell(sender: UIButton) {
+    @IBAction func deleteMeme(sender: UIButton) {
         
         // Get index
         let i: Int = (sender.layer.valueForKey("index")) as! Int
