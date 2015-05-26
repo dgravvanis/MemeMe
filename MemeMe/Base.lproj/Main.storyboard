@@ -542,7 +542,6 @@
                                                 <color key="titleShadowColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
-                                                <action selector="deleteCell:" destination="MMF-JC-g1d" eventType="touchUpInside" id="vx3-hs-KoT"/>
                                                 <action selector="deleteMeme:" destination="MMF-JC-g1d" eventType="touchUpInside" id="hxG-rp-l3A"/>
                                             </connections>
                                         </button>
@@ -625,7 +624,6 @@
                                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                             <state key="normal" image="TrashToolbarIcon"/>
                                             <connections>
-                                                <action selector="deleteCell:" destination="mr7-Zh-oHW" eventType="touchUpInside" id="yIX-9Q-v7q"/>
                                                 <action selector="deleteMeme:" destination="mr7-Zh-oHW" eventType="touchUpInside" id="sI8-G4-9xp"/>
                                             </connections>
                                         </button>
